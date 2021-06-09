@@ -1,0 +1,11 @@
+---
+- name: Delete Loopbacks on device
+  hosts: switches
+  connection: local
+  tasks:
+    - name: Del loopback shell
+      with_items: "{{local_loopback}}"
+      ios_interfaces:
+        config:
+          -interface: "{{item.name}}"
+        state: deleted
